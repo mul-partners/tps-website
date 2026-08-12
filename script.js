@@ -28,9 +28,9 @@ if (contactForm) {
     if (thanksEl) thanksEl.hidden = false;
   };
 
-  const mailtoFallback = (name, phone, type, message) => {
+  const mailtoFallback = (name, phone, email, type, industry, message) => {
     const subjectText = `[홈페이지 상담신청] ${name} (${type})`;
-    const bodyText = `이름: ${name}\n구분: ${type}\n연락처: ${phone}\n\n문의 내용:\n${message}`;
+    const bodyText = `이름: ${name}\n구분: ${type}\n전화번호: ${phone}\n이메일: ${email}\n업종: ${industry}\n\n문의 내용:\n${message}`;
     const fullText = `받는 사람: ${CONTACT_EMAIL}\n제목: ${subjectText}\n\n${bodyText}`;
 
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -54,11 +54,13 @@ if (contactForm) {
     e.preventDefault();
     const name = document.getElementById("name").value;
     const phone = document.getElementById("phone").value;
+    const email = document.getElementById("email").value;
     const type = contactForm.querySelector('input[name="type"]:checked').value;
+    const industry = document.getElementById("industry").value;
     const message = document.getElementById("message").value;
 
     if (!FORMSPREE_ENDPOINT) {
-      mailtoFallback(name, phone, type, message);
+      mailtoFallback(name, phone, email, type, industry, message);
       return;
     }
 
@@ -77,10 +79,10 @@ if (contactForm) {
       if (res.ok) {
         showThanks();
       } else {
-        mailtoFallback(name, phone, type, message);
+        mailtoFallback(name, phone, email, type, industry, message);
       }
     } catch (err) {
-      mailtoFallback(name, phone, type, message);
+      mailtoFallback(name, phone, email, type, industry, message);
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;

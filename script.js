@@ -42,7 +42,7 @@ if (contactForm) {
       statusEl.innerHTML =
         `문의 내용이 클립보드에 복사되었습니다.<br>` +
         `이메일 앱이 열리지 않으면 <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>로 ` +
-        `직접 붙여넣어 보내주시거나, <a href="tel:02-557-0161">02-557-0161</a>로 전화 주세요.`;
+        `직접 붙여넣어 보내주시거나, <a href="tel:1544-7354">1544-7354</a>로 전화 주세요.`;
     }
 
     const subject = encodeURIComponent(subjectText);
